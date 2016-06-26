@@ -1,6 +1,7 @@
 package com.fourteenfourhundred.Game;
 
-import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -15,18 +16,33 @@ public class GamePlayer {
 	public int y=0;
 	
 	public GamePlayer(int x,int y,String username,double rot){
-		
+		this.x=x;
+		this.y=y;
+		this.rot=rot;
+		this.username=username;
 	}
 	
-	public void paintPlayer(Graphics g){
+	public void paintPlayer(Graphics2D g){
 		
+		g.rotate(rot+360,x+Player.xCam+(Player.size/2),y+Player.yCam+(Player.size/2));
+        
+        g.setColor(Color.RED);
+        //g.fillRect(x+Player.xCam, y+Player.yCam, Player.size, Player.size);
+       // g.fillRect(x, y, width, height);
+        g.drawImage(ImageManager.getImage("player"),x+Player.xCam,y+Player.yCam,null);
+        
+        
+    	g.rotate(-(rot+360),x+Player.xCam+(Player.size/2),y+Player.yCam+(Player.size/2));
+    	
+    	g.setColor(Color.BLACK);
+		g.drawString(username, x+Player.xCam, (y-10)+Player.yCam);
 	}
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x+Player.xCam,y+Player.yCam,30,30);
 	}
 	
-	public static void paintPlayers(Graphics g){
+	public static void paintPlayers(Graphics2D g){
 		try{
 			Iterator<GamePlayer> i = Players.iterator();
 			while (i.hasNext()) {

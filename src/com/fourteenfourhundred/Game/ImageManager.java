@@ -18,6 +18,7 @@ public class ImageManager {
 			images.put("tree", ImageIO.read(new File("images/Tree1.png")));
 			images.put("tallgrass", ImageIO.read(new File("images/TallGrass1.png")));
 			images.put("stone", ImageIO.read(new File("images/stone.png")));
+			images.put("player", ImageIO.read(new File("images/player.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

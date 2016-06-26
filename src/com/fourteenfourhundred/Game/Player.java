@@ -22,7 +22,7 @@ public class Player {
 	public static int x=Math.abs(xCam)+(Game.width/2);
 	public static int y=Math.abs(yCam)+(Game.height/2);	
 	
-	public static String username="Marc";
+	public static String username="Marc (Java)";
 	
 	public static void draw(Graphics2D g){
   	  	g.rotate(rot,x+xCam+(Player.size/2),y+yCam+(Player.size/2));
@@ -33,9 +33,11 @@ public class Player {
         
     	g.rotate(-rot,x+xCam+(Player.size/2),y+yCam+(Player.size/2));
         
-    	MotionHandler.capSpeed();
+    	
     	
     	//consoider moving some of this to a seperate thread or  something, because there is lag
+    	
+    	MotionHandler.capSpeed();
     	
     	if(MotionHandler.isCollision()){
     		Player.vx*=-1;
