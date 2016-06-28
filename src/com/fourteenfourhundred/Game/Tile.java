@@ -21,7 +21,7 @@ public class Tile {
 	}
 	
 	public void paintTile(Graphics g){
-		g.drawImage(ImageManager.getImage(image),x+Player.xCam,y+Player.yCam,null);
+		g.drawImage(Game.imageManager.getImage(image),x+Player.xCam,y+Player.yCam,null);
 	}
 	
 	public Rectangle getBounds(){

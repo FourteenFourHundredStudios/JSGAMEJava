@@ -29,7 +29,7 @@ public class GamePlayer {
         g.setColor(Color.RED);
         //g.fillRect(x+Player.xCam, y+Player.yCam, Player.size, Player.size);
        // g.fillRect(x, y, width, height);
-        g.drawImage(ImageManager.getImage("player"),x+Player.xCam,y+Player.yCam,null);
+        g.drawImage(Game.imageManager.getImage("player"),x+Player.xCam,y+Player.yCam,null);
         
         
     	g.rotate(-(rot+360),x+Player.xCam+(Player.size/2),y+Player.yCam+(Player.size/2));

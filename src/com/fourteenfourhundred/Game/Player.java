@@ -47,8 +47,6 @@ public class Player {
     	Player.x+=Player.vx;
   		Player.y+=Player.vy; 
 
-  		
-  		
   		Player.xCam-=Player.vx;
   		Player.yCam-=Player.vy;
 

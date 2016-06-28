@@ -26,6 +26,7 @@ public class Game extends JFrame implements KeyListener,MouseMotionListener{
     public static ArrayList<Integer> keysDown=new ArrayList<Integer>();
     public static int width=1000;
     public static int height=600;
+    public static ImageManager imageManager =new ImageManager();
     
 	int size=50;
 
@@ -45,7 +46,7 @@ public class Game extends JFrame implements KeyListener,MouseMotionListener{
 		new GameController().start();
 		new MotionHandler().start();		
 		new Multiplayer();		
-		ImageManager.loadImages();
+		
 		//this.setComponentOrientation(null);	
 		
 	}
