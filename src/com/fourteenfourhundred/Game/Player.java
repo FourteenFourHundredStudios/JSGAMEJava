@@ -3,6 +3,7 @@ package com.fourteenfourhundred.Game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Player {
@@ -11,7 +12,7 @@ public class Player {
 	
 	public static double rot=0;
 	public static int speed=2;
-	public static int speedCap=12;
+	public static int speedCap=10;
 	
 	public static int xCam=-1*random(450,999);
 	public static int yCam=-1*random(450,999);
@@ -22,16 +23,24 @@ public class Player {
 	public static int x=Math.abs(xCam)+(Game.width/2);
 	public static int y=Math.abs(yCam)+(Game.height/2);	
 	
-	public static String username="Marc (Java)";
+	static BufferedImage playerImage=Game.imageManager.getImage("player");
+	
+	public static String username="Java Player "+Math.random();
+	
+	
+	 
 	
 	public static void draw(Graphics2D g){
-  	  	g.rotate(rot,x+xCam+(Player.size/2),y+yCam+(Player.size/2));
+  	  	g.rotate(rot+360,x+xCam+(Player.size/2),y+yCam+(Player.size/2));
         
         g.setColor(Color.RED);
-        g.fillRect(x+xCam, y+yCam, Player.size, Player.size);
+        //g.fillRect(x+xCam, y+yCam, Player.size, Player.size);
+       
+
         
+        g.drawImage(playerImage,x+xCam,y+yCam,null);
         
-    	g.rotate(-rot,x+xCam+(Player.size/2),y+yCam+(Player.size/2));
+    	g.rotate(-(rot+360),x+xCam+(Player.size/2),y+yCam+(Player.size/2));
         
     	
     	

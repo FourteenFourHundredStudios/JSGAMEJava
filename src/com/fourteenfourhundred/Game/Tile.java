@@ -41,5 +41,16 @@ public class Tile {
 			//for some reason still throws exception, but no issue in actual game
 		}
 	}
+
+	public static void setTile(int x, int y, String image) {
+		for(int i=0;i<Tile.Tiles.size();i++){
+	        Tile tile=Tile.Tiles.get(i);
+	        if (tile.x>x-30 && tile.x<x+30 && tile.y>y-30 && tile.y<y+30){
+	        	Tile.Tiles.get(i).image=image;
+	        	break;
+	        }
+	    }
+		
+	}
 	
 }

@@ -1,13 +1,12 @@
 package com.fourteenfourhundred.Game;
 
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 
@@ -21,8 +20,7 @@ public class ImageManager {
 	}
 	
 	public void loadImages(){
-		try {
-			images.put("grass", new GameImage(ImageIO.read(new File("images/Grass.png"))));
+		try {	
 			images.put("tree", new GameImage(new BufferedImage[]{
 				ImageIO.read(new File("images/Tree1.png")),
 				ImageIO.read(new File("images/Tree2.png"))
@@ -31,8 +29,14 @@ public class ImageManager {
 				ImageIO.read(new File("images/TallGrass1.png")),
 				ImageIO.read(new File("images/TallGrass2.png"))
 			}));
+			images.put("grass", new GameImage(ImageIO.read(new File("images/Grass.png"))));
 			images.put("stone", new GameImage(ImageIO.read(new File("images/stone.png"))));
 			images.put("player", new GameImage(ImageIO.read(new File("images/player.png"))));
+			
+			images.put("itemHolder", new GameImage(ImageIO.read(new File("images/itemHolder.png"))));
+			images.put("itemHolderSelected", new GameImage(ImageIO.read(new File("images/itemHolderSelected.png"))));
+			
+			
 			new updateImages().start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,16 +81,7 @@ public class ImageManager {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 				}
-				
-				/*
-				Iterator<Entry<String, GameImage>> it = images.entrySet().iterator();
-			    while (it.hasNext()) {
-			        Map.Entry<String, GameImage> pair = (Map.Entry<String, GameImage>)it.next();
-			        pair.getValue().nextImage();
-			     // avoids a ConcurrentModificationException
-			        //it.remove(); 
-			    }
-			    */
+
 				for(GameImage image:images.values()){
 					image.nextImage();
 				}

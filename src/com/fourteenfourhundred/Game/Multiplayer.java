@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class Multiplayer {
 
 	Socket user;
-	BufferedWriter bw;
+	static BufferedWriter bw;
 	
 	public Multiplayer(){
 		try {
@@ -25,42 +25,58 @@ public class Multiplayer {
 		}
 	}
 	
+	static void sendData(String label, String data){
+		try{
+			bw.write(label+"=>"+data);
+			bw.flush();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	static void sendData(String label, JSONObject data){
+		try{
+			bw.write(label+"=>"+data.toString());
+			bw.flush();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void onData(String label,String data){
 		
 		//System.out.println("");
 		switch(label){
+			//lol this should be "tileData". I called tiles "blocks" when I was first writing the html5 version 
 			case "blockData":
 				JSONObject obj = new JSONObject(data);
 				Tile.Tiles.add(new Tile(obj.getInt("x"),obj.getInt("y"),obj.getString("image")));
 				break;
 			case "setTile":
 				obj = new JSONObject(data);
-				for(int i=0;i<Tile.Tiles.size();i++){
-			        Tile tile=Tile.Tiles.get(i);
-			        if (tile.x>obj.getInt("x")-30 && tile.x<obj.getInt("x")+30 && tile.y>obj.getInt("y")-30 && tile.y<obj.getInt("y")+30){
-			        	Tile.Tiles.get(i).image=obj.getString("value");
-			        	break;
-			        }
-			    }
+				Tile.setTile(obj.getInt("x"),obj.getInt("y"),obj.getString("value"));
 				break;
 			case "playerData":
 				obj = new JSONObject(data);
-				for(GamePlayer player:GamePlayer.Players){
-					if(player.username.equals(obj.getString("username"))){
-						player.x=obj.getInt("x");
-						player.y=obj.getInt("y");
-						player.rot=obj.getDouble("theta");
-						return;
+					if(!obj.get("username").equals(Player.username)){
+					for(GamePlayer player:GamePlayer.Players){
+						if(player.username.equals(obj.getString("username"))){
+							player.x=obj.getInt("x");
+							player.y=obj.getInt("y");
+							player.rot=obj.getDouble("theta");
+							return;
+						}
 					}
+					System.out.println("New player detected: "+obj.getString("username"));
+					GamePlayer.Players.add(new GamePlayer(
+						obj.getInt("x"),
+						obj.getInt("y"),
+						obj.getString("username"),
+						obj.getDouble("theta")
+					));
 				}
-				System.out.println("New player detected: "+obj.getString("username"));
-				GamePlayer.Players.add(new GamePlayer(
-					obj.getInt("x"),
-					obj.getInt("y"),
-					obj.getString("username"),
-					obj.getDouble("theta")
-				));
 				break;
+				
 		}
 	}
 	
