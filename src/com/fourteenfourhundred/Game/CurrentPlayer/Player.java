@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.CurrentPlayer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,13 +6,15 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import com.fourteenfourhundred.Game.Game;
+
 public class Player {
 
 	public static int size=20;
 	
 	public static double rot=0;
 	public static int speed=2;
-	public static int speedCap=10;
+	public static int speedCap=5;
 	
 	public static int xCam=-1*random(450,999);
 	public static int yCam=-1*random(450,999);

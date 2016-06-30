@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.Item;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
+
+import com.fourteenfourhundred.Game.Game;
+import com.fourteenfourhundred.Game.Multiplayer.Multiplayer;
 
 public class Item {
 	
@@ -34,14 +37,38 @@ public class Item {
 		data.put("value", item);
 		System.out.println("");
 		Multiplayer.sendData("setTile", data);
+		
 	}
 	
 	public static void addItem(String item,int count){
 		items.add(new Item(item,count));
 	}
 	
-	public static void paint(Graphics g){
+	public static BufferedImage shade(BufferedImage img) {
 		
+		BufferedImage imgs=img;
+		
+	    for (int x = 0; x < imgs.getWidth(); x++) {
+	        for (int y = 0; y < imgs.getHeight(); y++) {
+
+	            Color color = new Color(imgs.getRGB(x, y));
+
+	            Color col = color.darker();
+	           // brighter.brighter();
+
+	            imgs.setRGB(x, y, col.getRGB());
+	        }
+	    }
+	    return imgs;
+	}
+	
+	public static void paint(Graphics g){
+		/*
+		if(items.get(selectedItem).count<1){
+			items.remove(selectedItem);
+			return;
+		}
+		*/
 		if(items.size()>0){
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("Helvetica", Font.BOLD, 30));
@@ -65,7 +92,10 @@ public class Item {
 	}
 
 	public static void action(int x, int y) {
+		
 		items.get(selectedItem).onAction(x, y);
+		items.get(selectedItem).count--;
+		
 	}
 	
 }

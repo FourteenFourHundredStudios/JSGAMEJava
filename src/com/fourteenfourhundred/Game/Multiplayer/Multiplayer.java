@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.Multiplayer;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,6 +7,9 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import org.json.JSONObject;
+
+import com.fourteenfourhundred.Game.CurrentPlayer.Player;
+import com.fourteenfourhundred.Game.Tile.Tile;
 
 
 public class Multiplayer {
@@ -34,7 +37,7 @@ public class Multiplayer {
 		}
 	}
 	
-	static void sendData(String label, JSONObject data){
+	public static void sendData(String label, JSONObject data){
 		try{
 			bw.write(label+"=>"+data.toString());
 			bw.flush();
@@ -58,7 +61,7 @@ public class Multiplayer {
 				break;
 			case "playerData":
 				obj = new JSONObject(data);
-					if(!obj.get("username").equals(Player.username)){
+				if(!obj.get("username").equals(Player.username)){
 					for(GamePlayer player:GamePlayer.Players){
 						if(player.username.equals(obj.getString("username"))){
 							player.x=obj.getInt("x");
@@ -74,6 +77,14 @@ public class Multiplayer {
 						obj.getString("username"),
 						obj.getDouble("theta")
 					));
+				}
+				break;
+			case "entity":
+				obj = new JSONObject(data);
+				switch(obj.getString("object")){
+					case "fireball":
+						
+						break;
 				}
 				break;
 				

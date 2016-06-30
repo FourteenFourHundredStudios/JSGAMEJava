@@ -1,6 +1,8 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.CurrentPlayer;
 
 import java.util.ConcurrentModificationException;
+
+import com.fourteenfourhundred.Game.Tile.Tile;
 
 public class MotionHandler extends Thread{
 

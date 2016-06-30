@@ -1,7 +1,9 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.CurrentPlayer;
 
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
+
+import com.fourteenfourhundred.Game.Game;
 
 public class GameController extends Thread{
 
@@ -10,7 +12,7 @@ public class GameController extends Thread{
 		while(true){
 			try {
 				Thread.sleep(5);
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 			}
 			Iterator<Integer> i = Game.keysDown.iterator();
 			while (i.hasNext()) {

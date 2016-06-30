@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.Game;
+package com.fourteenfourhundred.Game.Multiplayer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,6 +6,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+
+import com.fourteenfourhundred.Game.Game;
+import com.fourteenfourhundred.Game.CurrentPlayer.Player;
 
 public class GamePlayer {
 	
